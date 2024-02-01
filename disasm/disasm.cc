@@ -2339,6 +2339,13 @@ void disassembler_t::add_instructions(const isa_parser_t* isa)
     DEFINE_VECTOR_VV(vghsh_vv);
   }
 
+  if (isa->extension_enabled(EXT_ZVKGS)) {
+    // Despite its suffix, the vgmul.vs instruction
+    // is really ".s", with the form "vgmul.vs vd, vs2".
+    DEFINE_VECTOR_V(vgmul_vs);
+    DEFINE_VECTOR_VV(vghsh_vs);
+  }
+
   if (isa->extension_enabled(EXT_ZVKNED)) {
     // Despite their suffixes, the vaes*.{vv,vs} instructions
     // are really ".v", with the form "<op>.{vv,vs} vd, vs2".
